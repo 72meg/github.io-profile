@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>なつめぐ | Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loading-percentage">0%</div>
+            <div class="loading-bar"><div class="loading-fill"></div></div>
+            <div class="loading-status">SYSTEM INITIALIZING...</div>
+        </div>
+    </div>
+
+    <div class="matrix-rain"></div>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="music-player">
+        <button id="audioToggle" class="cyber-button-sm"><i class="fas fa-volume-mute"></i></button>
+        <div class="visualizer">
+            <span class="visualizer-bar"></span>
+            <span class="visualizer-bar"></span>
+            <span class="visualizer-bar"></span>
+            <span class="visualizer-bar"></span>
+        </div> <audio id="bgm" src="bgm.mp3" loop autoplay muted></audio>
+    </div>
+
+    <main id="main-content">
+<section id="profile" class="full-section">
+    <div class="cyber-frame neon-blue profile-container">
+        
+        <div class="profile-left">
+            <div class="avatar-sphere">
+                <img src="icon.jpg" alt="なつめぐ" class="avatar">
+            </div>
+            <h1 class="glitch" data-text="Natsumegu">Natsumegu</h1>
+            <div class="typing-container">
+                <span class="typing-text"></span><span class="cursor">|</span>
+            </div>
+        </div>
+
+        <div class="profile-right">
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <span class="stat-label">AGE:</span>
+                    <span class="stat-value">18</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">STATUS:</span>
+                    <span class="stat-value">Employee</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">LOCATION:</span>
+                    <span class="stat-value">Gunma</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">GENDER:</span>
+                    <span class="stat-value">Male</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <section id="abilities" class="full-section">
+            <h2 class="section-title">ABILITIES</h2>
+            <div class="cyber-frame neon-blue ability-content">
+                <div class="skill-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">Html</div>
+                    <div class="skill-item">Css</div>
+                    <div class="skill-item">PC Assembly</div>
+                    <div class="skill-item">Video Editing</div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="full-section">
+            <h2 class="section-title">LATEST NEWS</h2>
+            <div class="cyber-frame neon-blue news-board">
+                <div class="news-item">
+                    <span class="news-date">2026.03.02</span>
+                    <p class="news-text">地元の高校を卒業🎉</p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2026.03.02</span>
+                    <p class="news-text">webサイト公開(仮)✨</p>
+                </div>
+                <div class="news-item">
+                    <span class="news-date">2026.03.21</span>
+                    <p class="news-text">何かがある👀</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="links" class="full-section">
+            <h2 class="section-title">CONNECT</h2>
+            <div class="sns-group">
+                <button class="cyber-button-blue link-card" id="mail-btn">
+                    <i class="fas fa-envelope"></i> GMAIL
+                </button>
+                <button class="cyber-button-blue link-card" onclick="window.open('https://www.youtube.com/@YTnatumegu', '_blank')">
+                    <i class="fab fa-youtube"></i> YOUTUBE
+                </button>
+                <button class="cyber-button-blue link-card" onclick="window.open('https://x.com/Washin329', '_blank')">
+                    <i class="fab fa-twitter"></i> X (TWITTER)
+                </button>
+                <button class="cyber-button-blue link-card" onclick="window.open('https://discord.gg/8BXCv9MV', '_blank')">
+                    <i class="fab fa-discord"></i> DISCORD
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

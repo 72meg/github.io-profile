@@ -1,0 +1,448 @@
+:root {
+    --primary: #8b5cf6;
+    --secondary: #d946ef;
+    --bg: #030712;
+    --text: #ffffff;
+    --font: 'Orbitron', sans-serif;
+}
+
+body {
+    margin: 0; padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', var(--font);
+    overflow-x: hidden;
+}
+
+/* ローディング画面 */
+#loading-screen {
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 1s ease;
+}
+.loading-hidden { opacity: 0; pointer-events: none; }
+.loader-content { width: 300px; text-align: center; color: var(--primary); }
+.loading-bar { height: 4px; background: rgba(255,255,255,0.1); margin: 20px 0; border-radius: 2px; }
+.loading-fill { height: 100%; width: 0%; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
+
+/* マトリックス背景 */
+.matrix-rain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.3; }
+
+/* ホログラムフレーム (3D効果用) */
+.hologram-frame {
+    max-width: 500px; margin: 100px auto; padding: 50px;
+    border: 1px solid var(--primary); background: rgba(139, 92, 246, 0.05);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
+    text-align: center; transform-style: preserve-3d;
+}
+
+.avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--secondary); box-shadow: 0 0 20px var(--secondary); }
+
+/* ボタン */
+.button-group { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
+.cyber-button {
+    background: transparent; border: 1px solid var(--primary); color: var(--primary);
+    padding: 12px 24px; cursor: pointer; font-family: var(--font); transition: 0.3s;
+}
+.cyber-button:hover { background: var(--primary); color: white; box-shadow: 0 0 20px var(--primary); }
+
+/* 音楽が再生中（is-playingクラスがある時）だけ動かす */
+.visualizer-bar {
+    width: 3px;
+    background: var(--secondary);
+    height: 5px;
+    transition: height 0.2s;
+}
+
+body.is-playing .visualizer-bar {
+    animation: bounce 0.5s ease infinite alternate;
+}
+
+/* 棒ごとに動きをずらす設定 */
+body.is-playing .visualizer-bar:nth-child(1) { animation-delay: 0.1s; }
+body.is-playing .visualizer-bar:nth-child(2) { animation-delay: 0.3s; }
+body.is-playing .visualizer-bar:nth-child(3) { animation-delay: 0.2s; }
+body.is-playing .visualizer-bar:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+    from { height: 5px; }
+    to { height: 20px; }
+}
+
+/* カーソル */
+.cursor-dot { position: fixed; width: 8px; height: 8px; background: var(--secondary); z-index: 10000; pointer-events: none; border-radius: 50%; }
+.cursor-outline { position: fixed; width: 40px; height: 40px; border: 2px solid var(--primary); z-index: 10000; pointer-events: none; border-radius: 50%; transition: 0.1s; }
+.cursor-outline {
+	display: none;
+}
+
+#skills { padding: 50px; text-align: center; }
+.chart-container { max-width: 400px; margin: 0 auto; }
+
+/* ベース変数 */
+:root {
+    --primary: #8b5cf6;
+    --secondary: #d946ef;
+    --bg: #030712;
+    --text: #ffffff;
+    --font: 'Orbitron', sans-serif;
+}
+
+/* 全体レイアウト */
+.full-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--primary);
+    text-shadow: 0 0 15px var(--primary);
+    margin-bottom: 50px;
+    letter-spacing: 5px;
+}
+
+/* Abilityセクション全体の調整 */
+.ability-content {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;   
+    justify-content: center;
+    width: 90%;            
+    max-width: 800px;      
+    margin: 0 auto;
+    padding: 40px 20px;    
+}
+
+/* スキルボタンのグリッド設定 */
+.skill-grid {
+    display: grid !important;
+    /* 基本は横3列 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    justify-items: center;  
+    margin-top: 20px;
+}
+
+/* ボタン個別のスタイル */
+.skill-item {
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 15px 10px;
+    width: 100%;           
+    max-width: 200px;     
+    text-align: center;
+    font-family: var(--font);
+    font-size: 0.9rem;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+    transition: 0.3s;
+    white-space: nowrap;    
+}
+
+/* --- スマホ・タブレット用レスポンシブ --- */
+@media (max-width: 768px) {
+    .skill-grid {
+        /* 画面が狭いときは横2列にする（3列だと文字がはみ出すため） */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-grid {
+        /* さらに狭いスマホは1列で中央配置 */
+        grid-template-columns: 1fr;
+    }
+    .skill-item {
+        max-width: 280px; /* 押しやすいサイズ */
+    }
+}
+
+/* News セクション */
+.news-board {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    padding: 30px;
+    position: relative;
+}
+
+.news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.news-date {
+    color: var(--secondary);
+    font-family: var(--font);
+    font-size: 0.9rem;
+}
+
+.news-text { margin: 5px 0 0 0; }
+
+/* Links セクション */
+.sns-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+@media (max-width: 480px) {
+    .sns-group { grid-template-columns: 1fr; }
+}
+
+.link-card {
+    font-size: 1.2rem;
+    padding: 20px !important;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* --- ベース変数（水色を追加） --- */
+:root {
+    --primary: #8b5cf6; /* 紫 */
+    --secondary: #d946ef; /* ピンク */
+    --cyan: #00ffff; /* ★水色（ネオンブルー） */
+    --bg: #030712;
+    --text: #ffffff;
+    --font: 'Orbitron', sans-serif;
+}
+
+body {
+    margin: 0; padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans JP', var(--font);
+    overflow-x: hidden;
+    cursor: none; /* カスタムカーソルのため純正を消す */
+}
+
+/* --- 新規：水色のネオンフレーム --- */
+.cyber-frame {
+    background: rgba(0, 255, 255, 0.03); /* 薄い水色の背景 */
+    padding: 40px;
+    position: relative;
+    transform-style: preserve-3d; /* 3Dチルト用 */
+    transition: transform 0.1s ease-out;
+}
+
+/* 水色の縁と光 */
+.neon-blue {
+    border: 2px solid var(--cyan);
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.5), /* 内側の光 */
+        inset 0 0 10px rgba(0, 255, 255, 0.3); /* 外側の光 */
+}
+
+/* フレームの角の飾り */
+.cyber-frame::before, .cyber-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border: 2px solid var(--cyan);
+}
+.cyber-frame::before { top: -5px; left: -5px; border-right: none; border-bottom: none; }
+.cyber-frame::after { bottom: -5px; right: -5px; border-left: none; border-top: none; }
+
+/* --- レイアウト --- */
+
+.full-section {
+    min-height: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px; 
+    position: relative;
+    box-sizing: border-box;
+}
+
+.section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    color: var(--cyan);
+    text-shadow: 0 0 15px var(--cyan);
+    margin-bottom: 25px; 
+    letter-spacing: 5px;
+    font-family: var(--font);
+}
+
+/* アバター周り */
+.avatar {
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--cyan); /* アバターの縁も水色に */
+    box-shadow: 0 0 20px var(--cyan);
+}
+
+/* Glitchテキスト（名前） */
+.glitch {
+    font-size: 3rem; font-family: var(--font);
+    color: var(--text);
+    position: relative;
+}
+.glitch::before, .glitch::after {
+    content: attr(data-text);
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+}
+.glitch::before { text-shadow: -2px 0 var(--secondary); clip: rect(44px, 450px, 56px, 0); animation: glitch-1 5s infinite linear alternate-reverse; }
+.glitch::after { text-shadow: 2px 0 var(--primary); clip: rect(100px, 450px, 120px, 0); animation: glitch-2 5s infinite linear alternate-reverse; }
+
+/* --- 各セクション固有のスタイル --- */
+/* Abilityセクション内の調整 */
+.ability-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    /* 内側の余白を削減 */
+    padding: 10px 0; 
+}
+
+/* スキルボタンのグリッドの間隔も少し詰める */
+.skill-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px; /* 20px -> 12px */
+    width: 100%;
+    justify-items: center;
+    margin-top: 10px;
+}
+
+/* Newsボードの余白調整 */
+.news-board {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    padding: 20px; /* 30px -> 20px */
+}
+
+.news-item {
+    padding: 10px 0; /* 15px -> 10px */
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+/* SNSグループの調整 */
+.sns-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px; /* 20px -> 15px */
+    width: 100%;
+    max-width: 500px;
+}
+.cyber-button-blue {
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    padding: 15px;
+    font-family: var(--font);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 60px; /* アイコンとステータスの間の距離 */
+    padding: 40px 60px !important;
+}
+
+.profile-left {
+    text-align: center;
+}
+
+.profile-right {
+    min-width: 280px;
+}
+
+.profile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3);
+    padding-bottom: 5px;
+    font-family: var(--font);
+}
+
+/* --- スマホ・タブレット用レスポンシブ --- */@media (max-width: 768px) {
+    .skill-grid {
+        /* 横3列から2列に変更して余裕を持たせる */
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 10px;
+    }
+
+    .skill-item {
+        /* 背景を少し濃くして、枠線を細くする */
+        background: rgba(0, 255, 255, 0.05);
+        border: 1px solid rgba(0, 255, 255, 0.3); /* 線の主張を抑える */
+        font-size: 0.8rem; /* 文字を少し小さく */
+        padding: 10px 5px;
+        white-space: normal; /* 折り返しを許可してはみ出し防止 */
+    }
+}
+
+/* --- スマホでのプロフィール表示の崩れを修正 --- */
+@media (max-width: 768px) {
+    .profile-right {
+        min-width: unset;    /* 280pxの固定幅を解除 */
+        width: 100%;         /* 幅を画面いっぱいに */
+        max-width: 300px;    /* 広がりすぎないように制限 */
+    }
+
+    .stat-item {
+        gap: 10px;           /* ラベルと値の間の余白を狭くする */
+        justify-content: center; /* 中央に寄せる */
+        font-size: 0.9rem;   /* 少し文字を小さくして一行に収める */
+    }
+
+    .stat-label {
+        width: 100px;        /* ラベルの幅を固定して、コロンの位置を揃える */
+        text-align: right;   /* ラベルを右寄せにして値に近づける */
+        color: var(--cyan);
+    }
+
+    .stat-value {
+        width: 100px;        /* 値の幅も固定 */
+        text-align: left;    /* 値は左寄せ */
+    }
+}
+
+/* 音楽プレイヤー（小型） */
+.music-player { position: fixed; top: 20px; right: 20px; z-index: 1000; display: flex; align-items: center; gap: 10px; }
+.cyber-button-sm { background: transparent; border: 1px solid var(--primary); color: var(--primary); padding: 5px 10px; cursor: pointer; }
+.visualizer { display: flex; gap: 2px; align-items: flex-end; height: 15px; }
+.visualizer-bar { width: 2px; background: var(--secondary); }
+
+/* アニメーション定義 */
+@keyframes glitch-1 { 0% { clip: rect(20px, 9999px, 10px, 0); } 100% { clip: rect(80px, 9999px, 100px, 0); } }
+@keyframes glitch-2 { 0% { clip: rect(50px, 9999px, 30px, 0); } 100% { clip: rect(10px, 9999px, 60px, 0); } }
+
